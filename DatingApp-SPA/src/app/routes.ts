@@ -10,7 +10,7 @@ import { MemberListResolver } from './_resolvers/member-list.resolver';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent },
-    { 
+    {
         path: '',
         runGuardsAndResolvers: 'always',
         canActivate: [AuthGuard],
