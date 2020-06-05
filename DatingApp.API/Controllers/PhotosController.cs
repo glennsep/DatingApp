@@ -15,7 +15,7 @@ using Microsoft.Extensions.Options;
 namespace DatingApp.API.Controllers
 {
     [Authorize]
-    [Route("ape/users/{userid}/photos")]
+    [Route("api/users/{userid}/photos")]
     [ApiController]
     public class PhotosController : ControllerBase
     {
@@ -48,7 +48,7 @@ namespace DatingApp.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddPhotoForUser(int userId, PhotoForCreationDto photoForCreationDto) 
+        public async Task<IActionResult> AddPhotoForUser(int userId, [FromForm] PhotoForCreationDto photoForCreationDto) 
         {
             if (userId != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
             {
@@ -90,7 +90,7 @@ namespace DatingApp.API.Controllers
             if (await _repo.SaveAll())
             {
                 var photoToReturn = _mapper.Map<PhotoForReturnDto>(photo);
-                return CreatedAtRoute("GetPhoto", new { userId = userId, id = photo.Id, photoToReturn });
+                return CreatedAtRoute("GetPhoto", new { userId = userId, id = photo.Id }, photoToReturn);
             }
 
             return BadRequest("Coudld not add the photo.");
