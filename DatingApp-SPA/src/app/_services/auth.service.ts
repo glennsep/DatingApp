@@ -13,7 +13,7 @@ import { User } from '../_models/user';
 export class AuthService {
   baseUrl = environment.apiUrl + 'auth/';
   jwtHelper = new JwtHelperService();
-  decodedTioken: any;
+  decodedToken: any;
   currentUser: User;
   photoUrl = new BehaviorSubject<string>('../../assets/user.png');
   currentPhotoUrl = this.photoUrl.asObservable();
@@ -31,7 +31,7 @@ login(model: any) {
         if (user) {
             localStorage.setItem('token', user.token);
             localStorage.setItem('user', JSON.stringify(user.user));
-            this.decodedTioken = this.jwtHelper.decodeToken(user.token);
+            this.decodedToken = this.jwtHelper.decodeToken(user.token);
             this.currentUser = user.user;
             this.changeMemberPhoto(this.currentUser.photoUrl);
           }
