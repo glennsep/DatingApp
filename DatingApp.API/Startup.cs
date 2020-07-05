@@ -32,6 +32,7 @@ namespace DatingApp.API
 
         public IConfiguration Configuration { get; }
 
+        // used for development purposs
         public void ConfigureDevelopmentServices(IServiceCollection services)
         {
             services.AddDbContext<DataContext>(x => {
