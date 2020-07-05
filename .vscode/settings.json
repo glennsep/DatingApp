@@ -26,5 +26,7 @@
                 }
             }
         ]
-    }
+    },
+    "appService.defaultWebAppToDeploy": "",
+    "appService.deploySubpath": "DatingApp.API/bin/Release/netcoreapp3.1/publish"
 }
